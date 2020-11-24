@@ -14,6 +14,7 @@
 </head>
 
 <body>
+    <div id="top"></div>
     <div id="top-nav">
         <div class="logo-container">
             <img src="Netboox.png" alt="Netboox logo" class="logo">
@@ -30,22 +31,83 @@
         </div>
         <div id="username">Rami</div>
     </div>
+    <div id="mainContainer">
+        <div id="showRoom">
+            <!-- {{!-- first search result will be displayed here --}} -->
+           
+        </div>
+        <div id="contentContainer">
+            <!-- {{!-- content added dynamically here --}} -->
+        </div>
+    </div>
+   
 
 
 
 
+    <script id="book-template" type="text/x-handlebars-template">
+   <h2 class="totalItems">{{totalItems}} books found</h2>
+{{#each items}}
+<div class="grid">
+    <div class="bookContainer" {{#each volumeInfo.industryIdentifiers}}data-{{type}}="{{identifier}}" {{/each}}>
+    <a href="#top" class="bookImg">
+        <img class="" src="{{volumeInfo.imageLinks.thumbnail}}" alt="">
+        </a>
+        <div class="bookInfo">
+            <h3 class="title fade">{{volumeInfo.title}}</h3>
+            <h3 class="title"> Authors:</h3>
+            <h4 class="title"> 
+            {{#each volumeInfo.authors}}
+            {{this}}, 
+            {{/each}}
+            </h4>
+        </div>
+        <div class="actionContainer">
+            
+            <div class="addToLis"><i class="fas fa-plus"></i></div>
+            <div class="like"><i class="fas fa-thumbs-up"></i></div>
+            <div class="preview">Preview</div>
+
+        </div>
+
+    </div>
+</div>
+{{/each}}
+    
+    </script>
+
+
+    <script id="showRoom-template" type="text/x-handlebars-template">
+
+ <img class="showRoomImg" src="{{volumeInfo.imageLinks.thumbnail}}" alt="">
+            <div class="showRoomBookinfo">
+                <h1 class="">{{volumeInfo.title}}</h1>
+                <h3 class="publishDate">Published Date: {{volumeInfo.publishedDate}}</h3>
+            <h3 class=""> Authors:</h3>
+            <h4 class=""> 
+            {{#each volumeInfo.authors}}
+            {{this}}, 
+            {{/each}}
+            </h4>
+
+            </div>
+            <div class="showRoomDescription">
+                <h3>Description:</h3>
+               <p class="DesxriptionText"> {{volumeInfo.description}}</p>
+               <div class="actionContainerShowRoom">
+            <div class="addToLis"><i class="fas fa-plus"></i></div>
+            <div class="like"><i class="fas fa-thumbs-up"></i></div>
+            <div class="preview">Preview</div>
+        </div>
+            </div>
+
+        </script>
 
 
 
 
-
-
-
-
-
-
-    <script src="./node_modules/handlebars/dist/handlebars.js"></script>
-    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script src="handlebars/dist/handlebars.js"></script>
+    <script src="jquery/dist/jquery.js"></script>
     <script src="APIManager.js"></script>
     <script src="Renderer.js"></script>
     <script src="Saver.js"></script>
@@ -54,3 +116,7 @@
 </body>
 
 </html>
+
+
+
+
